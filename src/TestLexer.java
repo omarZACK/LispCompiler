@@ -12,7 +12,12 @@ public class TestLexer {
             if (tokenName == null) {
                 System.out.println("Unrecognized Token: Text: \"" + token.getText() + "\"" + ", line: " + token.getLine() + ", column: " + token.getCharPositionInLine());
             } else {
-                System.out.println("Token Type: " + tokenName + ", Text: \"" + token.getText() + "\"" + ", line: " + token.getLine() + ", column: " + token.getCharPositionInLine());
+                System.out.printf(
+                        "%-20s %-20s %-5s %-5s%n",
+                        "Token Type:", tokenName,
+                        "Text:", "\"" + token.getText() + "\""
+                );
+                System.out.println("Line: " + token.getLine() + ", Column: " + token.getCharPositionInLine()+"\n");
             }
         }
     }

@@ -93,7 +93,7 @@ PRINT           : 'print';
 DEFPARAM        : 'defparameter';
 VARIABLE        : 'defvar';
 WRITE           : 'write';
-FORAMT          : 'format';
+FORMAT          : 'format' -> pushMode(FORMAT_MODE);
 LET             : 'let';
 PROGN           : 'prog';
 CONSTANT        : 'defconstant';
@@ -104,7 +104,6 @@ CONS            : 'cons';
 //----------------------------------------------------------------
 // Numeric Types and Functions
 //----------------------------------------------------------------
-
 FIXNUM          : 'fixnum';
 BIGNUM          : 'bignum';
 RATION          : 'ratio';
@@ -135,7 +134,6 @@ MODULO          : 'mod' | 'rem';
 //----------------------------------------------------------------
 // List Operations
 //----------------------------------------------------------------
-
 PUSH            : 'push';
 POP             : 'pop';
 ARRAYREF        : 'aref';
@@ -151,9 +149,8 @@ DIFFERENT       : 'set-difference';
 //----------------------------------------------------------------
 // Identifiers and Numbers
 //----------------------------------------------------------------
-
 KEYWORD         : ':' LETTER + ('-' (LETTER+ | DIGIT+))*;
-ID              : ('_' | LETTER) ('_' | LETTER | DIGIT|'-')*;
+ID : ('*'? LETTER (LETTER | DIGIT | '-')* '*'?);
 
 INTEGERNUMBERDEF: [+-]? DIGIT+;
 FLOATNUMBERDEF  : [+-]? DIGIT+ '.' DIGIT+;
@@ -186,6 +183,24 @@ mode STRING_MODE;
 STRING_CONTENT: ~["\\] | '\\' .;
 STRING_END: '"' -> popMode;
 
+//--------------------------------------------
+// STRING_MODE (Handles Formatted strings)
+//--------------------------------------------
+mode FORMAT_MODE;
+FORMAT_STRING_BEGIN : '"' -> pushMode(STRING_FORMAT_MODE);
+FORMAT_ARG : ~[")\t\r\n]+ | ID;
+
+FORMAT_END : ')' -> popMode;
 
 
+mode STRING_FORMAT_MODE;
 
+TILDE_A : '~a';
+TILDE_S : '~s';
+TILDE_PERCENT : '~%';
+TILDE_AMPERSAND : '~&';
+TILDE_D : '~d';
+TILDE_F : '~f';
+FORMAT_STRING_CONTENT : ~["\\~]+;
+
+FORMAT_STRING_END : '"' -> popMode;
