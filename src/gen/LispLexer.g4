@@ -66,6 +66,7 @@ IF              : 'if';
 WHEN            : 'when';
 UNLESS          : 'unless';
 CASE            : 'case';
+OTHERWISE       : 'otherwise';
 DOLIST          : 'dolist';
 DOTIMES         : 'dotimes';
 LOOP            : 'loop';
@@ -150,11 +151,7 @@ DIFFERENT       : 'set-difference';
 // Identifiers and Numbers
 //----------------------------------------------------------------
 KEYWORD         : ':' LETTER + ('-' (LETTER+ | DIGIT+))*;
-ID : ('*'? LETTER (LETTER | DIGIT | '-')* '*'?);
-
-INTEGERNUMBERDEF: [+-]? DIGIT+;
-FLOATNUMBERDEF  : [+-]? DIGIT+ '.' DIGIT+;
-SCIENCENUMBERDEF: [+-]? DIGIT+ '.' DIGIT+ [eE] DIGIT? DIGIT+;
+ID : ('*'? (LETTER|'_') ('_'|LETTER | DIGIT | '-')* '*'?);
 NUMBERDEF       : INTEGERNUMBERDEF | FLOATNUMBERDEF | SCIENCENUMBERDEF;
 COMPLEXNUMBERDEF: '#c' OPEN NUMBERDEF (' ' + NUMBERDEF)* CLOSE;
 STRINGDEF       : '"' (~["\\] | '\\' .)* '"';
@@ -165,8 +162,9 @@ STRINGDEF       : '"' (~["\\] | '\\' .)* '"';
 fragment DIGIT  : [0-9];
 fragment LETTER : [a-zA-Z];
 fragment ESC    : '\\' [btnr"'\\];
-
-
+fragment INTEGERNUMBERDEF: [+-]? DIGIT+;
+fragment FLOATNUMBERDEF  : [+-]? DIGIT+ '.' DIGIT+;
+fragment SCIENCENUMBERDEF: [+-]? DIGIT+ '.' DIGIT+ [eE] DIGIT? DIGIT+;
 //--------------------------------------------
 // COMMENT_MODE (Handles all types of comments)
 //--------------------------------------------

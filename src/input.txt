@@ -8,7 +8,7 @@
 And a tab:	(Done!) the  newline:
 and a tab")
 
-(defparameter *quote-in-string* "He said, \"Lisp is amazing!\"")
+(defparameter _quote-in-string* "He said, \"Lisp is amazing!\"")
 (defparameter *backslash-string* "This path contains a backslash: C:\\Users\\Lisp")
 
 
