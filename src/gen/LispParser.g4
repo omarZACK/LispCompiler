@@ -4,7 +4,7 @@ options {
     tokenVocab = LispLexer;
 }
 
-lisp_
+lisp
     : expression+ EOF
     ;
 
@@ -56,7 +56,7 @@ when_expression
     ;
 
 cond_expression
-    : COND cond_clause+
+    : COND cond_clause*
     ;
 
 cond_clause
@@ -64,15 +64,23 @@ cond_clause
     ;
 
 case_expression
-    : CASE expression case_clause+ (default_clause)?
+    : CASE expression case_clause* (default_clause)?
     ;
 
 case_clause
-    : OPEN expression expression* CLOSE
+    : OPEN value_list expression* CLOSE
+    ;
+
+value_list
+    : (expression | nested_list)+
+    ;
+
+nested_list
+    : OPEN value_list CLOSE
     ;
 
 default_clause
-    : OPEN OTHERWISE expression CLOSE
+    : OPEN OTHERWISE expression* CLOSE
     ;
 
 logical_expression

@@ -11,9 +11,9 @@ QUOTE           : '\'';
 // Whitespace and Comments
 //----------------------------------------------------------------
 WS: [ \t\r\n]+ -> skip;
-COMMENT_START: ';' -> pushMode(COMMENT_MODE);
-MULTILINE_COMMENT_START: '#|' -> pushMode(COMMENT_MODE);
-STRING_START: '"' -> pushMode(STRING_MODE);
+COMMENT_START: ';' -> pushMode(COMMENT_MODE) ,channel(HIDDEN);
+MULTILINE_COMMENT_START: '#|' -> pushMode(COMMENT_MODE),channel(HIDDEN);
+STRING_START: '"' -> pushMode(STRING_MODE),channel(HIDDEN);
 //----------------------------------------------------------------
 // Boolean Values
 //----------------------------------------------------------------
@@ -153,7 +153,7 @@ DIFFERENT       : 'set-difference';
 KEYWORD         : ':' LETTER + ('-' (LETTER+ | DIGIT+))*;
 ID : ('*'? (LETTER|'_') ('_'|LETTER | DIGIT | '-')* '*'?);
 NUMBERDEF       : INTEGERNUMBERDEF | FLOATNUMBERDEF | SCIENCENUMBERDEF;
-COMPLEXNUMBERDEF: '#c' OPEN NUMBERDEF (' ' + NUMBERDEF)* CLOSE;
+COMPLEXNUMBERDEF: '#c' WS* OPEN WS* NUMBERDEF WS+ NUMBERDEF WS* CLOSE;
 STRINGDEF       : '"' (~["\\] | '\\' .)* '"';
 
 //----------------------------------------------------------------
