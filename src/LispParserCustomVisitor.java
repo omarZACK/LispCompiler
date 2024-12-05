@@ -1,4 +1,4 @@
-import gen.*; // Import generated ANTLR classes
+import gen.*;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.Vocabulary;
 import org.antlr.v4.runtime.tree.*;
@@ -92,7 +92,6 @@ public class LispParserCustomVisitor extends LispParserBaseVisitor<Void> {
             System.out.println("Keys: " + ctx.value_list().getText());
         }
 
-        // Process the results (expression*)
         List<LispParser.ExpressionContext> results = ctx.expression();
         if (results != null && !results.isEmpty()) {
             for (LispParser.ExpressionContext result : results) {
@@ -135,12 +134,10 @@ public class LispParserCustomVisitor extends LispParserBaseVisitor<Void> {
 
     private void traverseTree(ParseTree tree, StringBuilder sb) {
         if (tree instanceof TerminalNode) {
-            // For terminal nodes, fetch the text directly
             Token token = ((TerminalNode) tree).getSymbol();
             String tokenName = vocab.getSymbolicName(token.getType());
             sb.append(token.getText()).append(" ");
         } else {
-            // For non-terminal nodes, recursively visit children
             for (int i = 0; i < tree.getChildCount(); i++) {
                 traverseTree(tree.getChild(i), sb);
             }
