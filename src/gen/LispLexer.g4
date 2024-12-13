@@ -1,5 +1,7 @@
 lexer grammar LispLexer;
-
+tokens{
+    COMMENT,FSTRING_START,FSTRING_CONTENT,FSTRING_END
+}
 //----------------------------------------------------------------
 // Basic Symbols
 //----------------------------------------------------------------
@@ -11,72 +13,89 @@ QUOTE           : '\'';
 // Whitespace and Comments
 //----------------------------------------------------------------
 WS: [ \t\r\n]+ -> skip;
-COMMENT_START: ';' -> pushMode(COMMENT_MODE) ,channel(HIDDEN);
-MULTILINE_COMMENT_START: '#|' -> pushMode(COMMENT_MODE),channel(HIDDEN);
-STRING_START: '"' -> pushMode(STRING_MODE),channel(HIDDEN);
+COMMENT_START: ';' -> pushMode(COMMENT_MODE) ,channel(HIDDEN),type(COMMENT);
+MULTILINE_COMMENT_START: '#|' -> pushMode(COMMENT_MODE),channel(HIDDEN),type(COMMENT);
 //----------------------------------------------------------------
 // Boolean Values
 //----------------------------------------------------------------
-TRUE            : 't';
-FALSE           : 'nil';
+TRUE            : 't';//done
+FALSE           : 'nil';//done
 
 //----------------------------------------------------------------
 // Arithmetic Operators
 //----------------------------------------------------------------
-PLUS            : '+';
-MINUS           : '-';
-MULTIPLY        : '*';
-DIVIDE          : '/';
+PLUS            : '+';//done
+MINUS           : '-';//done
+MULTIPLY        : '*';//done
+DIVIDE          : '/';//done
 
 //----------------------------------------------------------------
 // Comparison Operators
 //----------------------------------------------------------------
-EQUAL           : '=' | 'equal' | 'eq' | 'eql';
-LT              : '<';
-GT              : '>';
-LTE             : '<=';
-GTE             : '>=';
+NUMEQUAL        : '=';//done
+EQUAL           : 'equal' | 'eq' | 'eql';//done
+LT              : '<';//done
+GT              : '>';//done
+LTE             : '<=';//done
+GTE             : '>=';//done
 
 //----------------------------------------------------------------
 // Logical Operators
 //----------------------------------------------------------------
-AND             : 'and';
-OR              : 'or';
-NOT             : 'not';
+AND             : 'and';//done
+OR              : 'or';//done
+NOT             : 'not';//done
 
 //----------------------------------------------------------------
 // Mathematical Functions
 //----------------------------------------------------------------
-MIN             : 'min';
-MAX             : 'max';
-INCF            : 'incf';
-DECF            : 'decf';
-LOGAND          : 'logand';
-LOGIOR          : 'logior';
-LOGXOR          : 'logxor';
-LOGNOR          : 'lognor';
-LOGEQV          : 'logeqv';
-EVEN            : 'evenp';
-
+MIN             : 'min';//done
+MAX             : 'max';//done
+INCF            : 'incf';//done
+DECF            : 'decf';//done
+LOGAND          : 'logand';//done
+LOGIOR          : 'logior';//done
+LOGXOR          : 'logxor';//done
+LOGNOR          : 'lognor';//done
+LOGEQV          : 'logeqv';//done
+EVEN            : 'evenp';//done
+ODD             : 'oddp';//done
+ZERO            : 'zerop';//done
+BOUND           : 'boundp';//done
+TYPE            : 'typep';//done
 //----------------------------------------------------------------
 // Control Structures
 //----------------------------------------------------------------
-COND            : 'cond';
-IF              : 'if';
-WHEN            : 'when';
-UNLESS          : 'unless';
-CASE            : 'case';
-OTHERWISE       : 'otherwise';
-DOLIST          : 'dolist';
-DOTIMES         : 'dotimes';
-LOOP            : 'loop';
-FOR             : 'for';
-DO_LOOP         : 'do';
-ERROR           : 'error';
-BLOCK           : 'block';
+COND            : 'cond';//done
+IF              : 'if';//done
+WHEN            : 'when';//done
+UNLESS          : 'unless';//done
+CASE            : 'case';//done
+OTHERWISE       : 'otherwise';//done
+DOLIST          : 'dolist';//done
+DOTIMES         : 'dotimes';//done
+LOOP            : 'loop';//done
+FOR             : 'for';//done
+DO_LOOP         : 'do';//done
+BLOCK           : 'block';//done
+RETURN          : 'return';//done
+RETURN_FROM     : 'return-from';//done
+IN              : 'in';//done
+FROM            : 'from';//done
+TO              : 'to';//done
+BY              : 'by';//done
 
 //----------------------------------------------------------------
-// Function and Variable Definitions
+// ERROR HANDLING Structures
+//----------------------------------------------------------------
+ERROR           : 'error';//
+HANDLER_CASE    : 'handler-case';//
+HANDLER_BIND    : 'handler-bind';//
+RESTART_CASE    : 'restart-case';//
+SIGNAL          : 'signal';//
+
+//----------------------------------------------------------------
+// Function and Variable Definitions  **
 //----------------------------------------------------------------
 FUNCALL         : 'funcall';
 APPLY           : 'apply';
@@ -91,6 +110,8 @@ SETQ            : 'setq';
 FUNCTION        : 'defun';
 STRUCT          : 'defstruct';
 PRINT           : 'print';
+PRIN1           : 'prin1';
+PRINC           : 'princ';
 DEFPARAM        : 'defparameter';
 VARIABLE        : 'defvar';
 WRITE           : 'write';
@@ -98,42 +119,46 @@ FORMAT          : 'format' -> pushMode(FORMAT_MODE);
 LET             : 'let';
 PROGN           : 'prog';
 CONSTANT        : 'defconstant';
-BOUNDP          : 'boundp';
 LIST            : 'list';
 CONS            : 'cons';
 
 //----------------------------------------------------------------
 // Numeric Types and Functions
 //----------------------------------------------------------------
-FIXNUM          : 'fixnum';
-BIGNUM          : 'bignum';
-RATION          : 'ratio';
-FLOAT           : 'float';
-COMPLEX         : 'complex';
-SIN             : 'sin';
-COS             : 'cos';
-TAN             : 'tan';
-ASIN            : 'asin';
-ACOS            : 'acos';
-ATAN            : 'atan';
-SINH            : 'sinh';
-COSH            : 'cosh';
-TANH            : 'tanh';
-EXP             : 'exp';
-EXPT            : 'expt';
-SQRT            : 'sqrt';
-LOG             : 'log';
-CONJUGATE       : 'conjugate';
-ABS             : 'abs';
-GCD             : 'gcd';
-LCM             : 'lcm';
-ISQRT           : 'isqrt';
-FLOOR           : 'floor';
-CEIL            : 'ceiling';
-MODULO          : 'mod' | 'rem';
+FIXNUM          : 'fixnum';//done Type
+BIGNUM          : 'bignum';//done Type
+NUMBER          : 'number';//done Type
+REAL            : 'real';//done Type
+INTEGER         : 'integer';//done Type
+RATION          : 'ratio';//done Type
+FLOAT           : 'float';//done Type and function
+COMPLEX         : 'complex';//done Type and function
+BOOLEAN         : 'boolean';//done Type
+PI              : 'pi';//done function
+SIN             : 'sin';//done function
+COS             : 'cos';//done function
+TAN             : 'tan';//done function
+ASIN            : 'asin';//done function
+ACOS            : 'acos';//done function
+ATAN            : 'atan';//done function
+SINH            : 'sinh';//done function
+COSH            : 'cosh';//done function
+TANH            : 'tanh';//done function
+EXP             : 'exp';//done function
+EXPT            : 'expt';//done function
+SQRT            : 'sqrt';//done function
+LOG             : 'log';//done function
+CONJUGATE       : 'conjugate';//done function
+ABS             : 'abs';//done function
+GCD             : 'gcd';//done function
+LCM             : 'lcm';//done function
+ISQRT           : 'isqrt';//done function
+FLOOR           : 'floor';//done function
+CEIL            : 'ceiling';//done function
+MODULO          : 'mod' | 'rem';//done function
 
 //----------------------------------------------------------------
-// List Operations
+// List Operations  **
 //----------------------------------------------------------------
 PUSH            : 'push';
 POP             : 'pop';
@@ -151,20 +176,19 @@ DIFFERENT       : 'set-difference';
 // Identifiers and Numbers
 //----------------------------------------------------------------
 KEYWORD         : ':' LETTER + ('-' (LETTER+ | DIGIT+))*;
-ID : ('*'? (LETTER|'_') ('_'|LETTER | DIGIT | '-')* '*'?);
-NUMBERDEF       : INTEGERNUMBERDEF | FLOATNUMBERDEF | SCIENCENUMBERDEF;
+ID              : ('*'? (LETTER|'_') ('_'|LETTER | DIGIT | '-')* '*'?);
+NUMBERDEF       : [+-]? (INTEGERNUMBERDEF | FLOATNUMBERDEF | SCIENCENUMBERDEF);
 COMPLEXNUMBERDEF: '#c' WS* OPEN WS* NUMBERDEF WS+ NUMBERDEF WS* CLOSE;
 STRINGDEF       : '"' (~["\\] | '\\' .)* '"';
 
 //----------------------------------------------------------------
 // Fragments
 //----------------------------------------------------------------
-fragment DIGIT  : [0-9];
-fragment LETTER : [a-zA-Z];
-fragment ESC    : '\\' [btnr"'\\];
-fragment INTEGERNUMBERDEF: [+-]? DIGIT+;
-fragment FLOATNUMBERDEF  : [+-]? DIGIT+ '.' DIGIT+;
-fragment SCIENCENUMBERDEF: [+-]? DIGIT+ '.' DIGIT+ [eE] DIGIT? DIGIT+;
+fragment DIGIT           : [0-9];
+fragment LETTER          : [a-zA-Z];
+fragment INTEGERNUMBERDEF: DIGIT+;
+fragment FLOATNUMBERDEF  : DIGIT+ '.' DIGIT+;
+fragment SCIENCENUMBERDEF: DIGIT+ '.' DIGIT+ [eE] DIGIT? DIGIT+;
 //--------------------------------------------
 // COMMENT_MODE (Handles all types of comments)
 //--------------------------------------------
