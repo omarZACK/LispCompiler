@@ -1,6 +1,6 @@
 lexer grammar LispLexer;
 tokens{
-    COMMENT,FSTRING_START,FSTRING_CONTENT,FSTRING_END
+    COMMENT
 }
 //----------------------------------------------------------------
 // Basic Symbols
@@ -8,11 +8,16 @@ tokens{
 OPEN            : '(';
 CLOSE           : ')';
 QUOTE           : '\'';
+HASH            : '#';
+HASHCOMPLEX     : HASH'c';
+
+REST            : '&rest';
+OPTIONAL        : '&optional';
 
 //----------------------------------------------------------------
 // Whitespace and Comments
 //----------------------------------------------------------------
-WS: [ \t\r\n]+ -> skip;
+WS: [ \t\r\n]+ -> channel(HIDDEN);
 COMMENT_START: ';' -> pushMode(COMMENT_MODE) ,channel(HIDDEN),type(COMMENT);
 MULTILINE_COMMENT_START: '#|' -> pushMode(COMMENT_MODE),channel(HIDDEN),type(COMMENT);
 //----------------------------------------------------------------
@@ -28,7 +33,6 @@ PLUS            : '+';//done
 MINUS           : '-';//done
 MULTIPLY        : '*';//done
 DIVIDE          : '/';//done
-
 //----------------------------------------------------------------
 // Comparison Operators
 //----------------------------------------------------------------
@@ -88,44 +92,41 @@ BY              : 'by';//done
 //----------------------------------------------------------------
 // ERROR HANDLING Structures
 //----------------------------------------------------------------
-ERROR           : 'error';//
-HANDLER_CASE    : 'handler-case';//
-HANDLER_BIND    : 'handler-bind';//
-RESTART_CASE    : 'restart-case';//
-SIGNAL          : 'signal';//
-
+ERROR           : 'error';//done
 //----------------------------------------------------------------
 // Function and Variable Definitions  **
 //----------------------------------------------------------------
-FUNCALL         : 'funcall';
-APPLY           : 'apply';
-MAPCAR          : 'mapcar';
-LAMBDA          : 'lambda';
-VECTOR          : 'vector';
-CHARACTER       : 'char';
-STRING          : 'string';
-ARRAY           : 'make-array';
-MARCO           : 'defmacro';
-SETQ            : 'setq';
-FUNCTION        : 'defun';
-STRUCT          : 'defstruct';
-PRINT           : 'print';
-PRIN1           : 'prin1';
-PRINC           : 'princ';
-DEFPARAM        : 'defparameter';
-VARIABLE        : 'defvar';
-WRITE           : 'write';
-FORMAT          : 'format' -> pushMode(FORMAT_MODE);
-LET             : 'let';
-PROGN           : 'prog';
-CONSTANT        : 'defconstant';
-LIST            : 'list';
-CONS            : 'cons';
+FUNCALL         : 'funcall';//done
+APPLY           : 'apply';//done
+MAPCAR          : 'mapcar';//done
+LAMBDA          : 'lambda';//done
+VECTOR          : 'vector';//done
+CHARACTER       : 'char';//done
+ARRAY           : 'make-array';//done
+MARCO           : 'defmacro';//done
+SETQ            : 'setq';//done
+FUNCTION        : 'defun';//done
+STRUCT          : 'defstruct';//done
+PRINT           : 'print';//done
+PRIN1           : 'prin1';//done
+PRINC           : 'princ';//done
+DEFPARAM        : 'defparameter';//done
+VARIABLE        : 'defvar';//done
+WRITE           : 'write';//done
+FORMAT          : 'format' -> pushMode(STRING_FORMAT_MODE);//done
+LET             : 'let';//done
+PROGN           : 'prog';//done
+CONSTANT        : 'defconstant';//done
+LIST            : 'list';//done
+CONS            : 'cons';//done
 
 //----------------------------------------------------------------
 // Numeric Types and Functions
 //----------------------------------------------------------------
 FIXNUM          : 'fixnum';//done Type
+CHARLESSP       : 'char-lessp';//done Type
+STRINGLESSP     : 'string-lessp';//done Type
+STRING          : 'string';//done Type
 BIGNUM          : 'bignum';//done Type
 NUMBER          : 'number';//done Type
 REAL            : 'real';//done Type
@@ -160,26 +161,40 @@ MODULO          : 'mod' | 'rem';//done function
 //----------------------------------------------------------------
 // List Operations  **
 //----------------------------------------------------------------
-PUSH            : 'push';
-POP             : 'pop';
-ARRAYREF        : 'aref';
-SORT            : 'sort';
-APPEND          : 'append';
-REVERSE         : 'reverse';
-MEMBERS         : 'member';
-SUBSET          : 'subsetp';
-INTERSECT       : 'intersection';
-UNION           : 'union';
-DIFFERENT       : 'set-difference';
+PUSH            : 'push';//done
+POP             : 'pop';//done
+ARRAYREF        : 'aref';//done
+SORT            : 'sort';//done
+APPEND          : 'append';//done
+REVERSE         : 'reverse';//done
+MEMBERS         : 'member';//done
+SUBSET          : 'subsetp';//done
+INTERSECT       : 'intersection';//done
+UNION           : 'union';//done
+DIFFERENT       : 'set-difference';//done
 
 //----------------------------------------------------------------
 // Identifiers and Numbers
 //----------------------------------------------------------------
-KEYWORD         : ':' LETTER + ('-' (LETTER+ | DIGIT+))*;
-ID              : ('*'? (LETTER|'_') ('_'|LETTER | DIGIT | '-')* '*'?);
 NUMBERDEF       : [+-]? (INTEGERNUMBERDEF | FLOATNUMBERDEF | SCIENCENUMBERDEF);
-COMPLEXNUMBERDEF: '#c' WS* OPEN WS* NUMBERDEF WS+ NUMBERDEF WS* CLOSE;
+ID              : ('*'? (LETTER|'_') ('_'|LETTER | DIGIT | '-')* '*'?);
 STRINGDEF       : '"' (~["\\] | '\\' .)* '"';
+
+//----------------------------------------------------------------
+// Keyword Arguments
+//----------------------------------------------------------------
+
+//make-array keyword argument
+ELEMENTTYPE   : COLON 'element-type';
+INTIALELEMENT : COLON 'initial-element';
+INTIALCONTENT : COLON 'initial-contents';
+ADJUSTABLE    : COLON 'adjustable';
+FILLPOINTER   : COLON 'fill-pointer';
+//defstrucr keyword argument
+TYPEST            : COLON 'type';
+READONLY            : COLON 'read-only';
+
+//----------------------------------------------------------------
 
 //----------------------------------------------------------------
 // Fragments
@@ -187,8 +202,9 @@ STRINGDEF       : '"' (~["\\] | '\\' .)* '"';
 fragment DIGIT           : [0-9];
 fragment LETTER          : [a-zA-Z];
 fragment INTEGERNUMBERDEF: DIGIT+;
-fragment FLOATNUMBERDEF  : DIGIT+ '.' DIGIT+;
-fragment SCIENCENUMBERDEF: DIGIT+ '.' DIGIT+ [eE] DIGIT? DIGIT+;
+fragment FLOATNUMBERDEF  : (DIGIT+ '.' DIGIT*) | (DIGIT* '.' DIGIT+);
+fragment SCIENCENUMBERDEF: (INTEGERNUMBERDEF | FLOATNUMBERDEF) [eE] DIGIT? DIGIT+;
+fragment COLON           : ':';
 //--------------------------------------------
 // COMMENT_MODE (Handles all types of comments)
 //--------------------------------------------
@@ -198,31 +214,19 @@ MULTILINE_COMMENT: .*? '|#' -> skip,popMode;
 SINGLELINECOMMENT: ~[\n]+ ->skip,popMode;
 
 //--------------------------------------------
-// STRING_MODE (Handles string literals)
-//--------------------------------------------
-mode STRING_MODE;
-
-STRING_CONTENT: ~["\\] | '\\' .;
-STRING_END: '"' -> popMode;
-
-//--------------------------------------------
 // STRING_MODE (Handles Formatted strings)
 //--------------------------------------------
-mode FORMAT_MODE;
-FORMAT_STRING_BEGIN : '"' -> pushMode(STRING_FORMAT_MODE);
-FORMAT_ARG : ~[")\t\r\n]+ | ID;
-
-FORMAT_END : ')' -> popMode;
-
 
 mode STRING_FORMAT_MODE;
+FORMAT_DESTINATION  : TRUE| FALSE;
+FORMAT_STRING_BEGIN : '"' -> pushMode(FORMAT_STRING_CONTENT_MODE);
 
-TILDE_A : '~a';
-TILDE_S : '~s';
-TILDE_PERCENT : '~%';
-TILDE_AMPERSAND : '~&';
-TILDE_D : '~d';
-TILDE_F : '~f';
-FORMAT_STRING_CONTENT : ~["\\~]+;
-
-FORMAT_STRING_END : '"' -> popMode;
+mode FORMAT_STRING_CONTENT_MODE;
+TILDE_F             : '~' DIGIT* 'f';
+TILDE_A             : '~a';
+TILDE_S             : '~s';
+TILDE_PERCENT       : '~%';
+TILDE_AMPERSAND     : '~&';
+TILDE_D             : '~' DIGIT* 'd';
+FORMAT_STRING_CONTENT : ~["\\~]+ | '\\' .;
+FORMAT_STRING_END : '"' -> popMode, popMode;

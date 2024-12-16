@@ -12,21 +12,31 @@ expression
     : ID
     | NUMBERDEF
     | STRINGDEF
-    | COMPLEXNUMBERDEF
     | TRUE
     | FALSE
     | list
-    | literals_expression
     ;
 
 
 list
     : OPEN list_content CLOSE
     | OPEN CLOSE
+    | literals_expression
+    | hashed_expression
+    ;
+
+hashed_expression
+    : hashvector_expression
+    | complex_number_definetion
+    ;
+
+hashvector_expression
+    : HASH OPEN expression* CLOSE
     ;
 
 literals_expression
     : QUOTE expression
+    | listForm
     ;
 
 
@@ -41,10 +51,15 @@ list_content
     | block_expression
     | error_handling_expression
     | pre_define_function_expression
+    | function_call_expression
     ;
 
 number_expression
-    : (numeric_expression | complex_expression | COMPLEXNUMBERDEF)
+    : (numeric_expression | complex_expression | complex_number_definetion)
+    ;
+
+complex_number_definetion
+    : HASHCOMPLEX OPEN NUMBERDEF NUMBERDEF? CLOSE
     ;
 
 arithmetic_expression
@@ -52,7 +67,8 @@ arithmetic_expression
     | ((MULTIPLY | PLUS) number_expression*)
     | ((INCF |DECF) ID numeric_expression)
     | (EXP | CONJUGATE | ABS) number_expression
-    | (EXPT| LOG) number_expression number_expression
+    | EXPT number_expression number_expression
+    | LOG number_expression number_expression?
     | SQRT number_expression
     | ISQRT numeric_expression
     ;
@@ -152,7 +168,8 @@ dotimes_expr
     ;
 
 loop_expr
-    : LOOP loop_clause* expression*
+    : LOOP expression*
+    | LOOP loop_clause (DO_LOOP expression*)?
     ;
 
 loop_clause
@@ -163,7 +180,11 @@ loop_clause
 
 listForm
     : QUOTE? ID
-    | QUOTE OPEN expression* CLOSE
+    | QUOTE OPEN (listForm_content| expression)* CLOSE
+    ;
+
+listForm_content
+    :OPEN expression* CLOSE
     ;
 
 return_expression
@@ -184,9 +205,8 @@ error_handling_expression
     ;
 
 error_expression
-    : ERROR STRINGDEF expression*
+    : ERROR format_string  expression*
     ;
-
 
 pre_define_function_expression
     : print_function_expression
@@ -200,7 +220,32 @@ pre_define_function_expression
     | ceil_expression
     | floor_expression
     | modulo_expression
-//    | format_function_expression
+    | format_expression
+    | variable_definition_expression
+    | constant_definition_expression
+    | parameter_definition_expression
+    | list_structure_expression
+    | vector_expression
+    | array_expression
+    | cons_expression
+    | setq_expression
+    | function_definition
+    | macro_definition_expression
+    | structure_definition_expression
+    | reverse_expression
+    | append_expression
+    | intersection_expression
+    | subset_expression
+    | member_expression
+    | union_expression
+    | difference_expression
+    | character_function_expression
+    | sort_expression
+    | arrayref_expression
+    | pop_expression
+    | push_expression
+    | progn_expression
+    |let_expression
     ;
 
 print_function_expression
@@ -246,4 +291,168 @@ ceil_expression
 
 modulo_expression
     : MODULO numeric_expression numeric_expression
+    ;
+
+format_expression
+     : FORMAT FORMAT_DESTINATION format_string expression*
+     ;
+
+format_string
+     : FORMAT_STRING_BEGIN (FORMAT_STRING_CONTENT |string_format_argument)* FORMAT_STRING_END
+     ;
+
+string_format_argument
+     : TILDE_F | TILDE_A | TILDE_S | TILDE_PERCENT | TILDE_AMPERSAND | TILDE_D
+     ;
+
+variable_definition_expression
+    : VARIABLE ID expression expression? // second expression is documentation also known as explanation wrote by me omar wawy not chatgpt
+    ;
+
+constant_definition_expression
+    : CONSTANT ID expression expression? // second expression is documentation also known as explanation wrote by me omar wawy not chatgpt
+    ;
+
+parameter_definition_expression
+    : DEFPARAM ID expression expression? // second expression is documentation also known as explanation wrote by me omar wawy not chatgpt
+    ;
+
+list_structure_expression
+    : LIST expression*
+    ;
+
+vector_expression
+    : VECTOR expression*
+    ;
+
+array_expression
+    : ARRAY (NUMBERDEF| listForm) array_key_argument*
+    ;
+
+array_key_argument
+    : ELEMENTTYPE   types
+    | INTIALELEMENT number_expression
+    | INTIALCONTENT listForm
+    | ADJUSTABLE (TRUE|FALSE)
+    | FILLPOINTER   NUMBERDEF
+    ;
+
+cons_expression
+    : CONS expression expression
+    ;
+
+setq_expression
+    : SETQ (ID expression)*
+    ;
+
+function_definition
+    : FUNCTION ID OPEN parameter_list CLOSE expression*
+    ;
+
+macro_definition_expression
+    : MARCO ID OPEN parameter_list CLOSE expression*
+    ;
+
+structure_definition_expression
+    : STRUCT ID (ID | structure_content)*
+    ;
+
+structure_content
+    : OPEN ID expression (TYPEST types)* (READONLY (TRUE|FALSE))? CLOSE
+    ;
+
+parameter_list
+    : (ID | (REST|OPTIONAL) ID)*
+    ;
+
+difference_expression
+    : DIFFERENT listForm listForm
+    ;
+
+union_expression
+    : UNION listForm listForm
+    ;
+
+member_expression
+    : MEMBERS listForm listForm
+    ;
+
+subset_expression
+    : SUBSET listForm listForm
+    ;
+
+intersection_expression
+    : INTERSECT listForm listForm
+    ;
+
+append_expression
+    : APPEND expression*
+    ;
+
+reverse_expression
+    : REVERSE (listForm|STRINGDEF)
+    ;
+
+character_function_expression
+    : CHARACTER STRINGDEF NUMBERDEF
+    ;
+
+sort_expression
+    : SORT (ID|listForm|STRINGDEF) hashcomparison
+    ;
+
+hashcomparison
+    : HASH QUOTE (LT |GT |LTE| GTE|NUMEQUAL | PLUS |MINUS |MULTIPLY |DIVIDE | MIN | MAX | APPEND |CONS |ABS|STRINGLESSP | CHARLESSP )
+    ;
+
+arrayref_expression
+    : ARRAYREF ID numeric_expression*
+    ;
+
+push_expression
+    : PUSH expression (ID|listForm)
+    ;
+
+pop_expression
+    : POP (ID|listForm)
+    ;
+
+function_call_expression
+    : function_call
+    | function_call_function
+    | apply_call_function
+    | mapcar_function
+    | lambda_function
+    ;
+
+function_call
+    : ID expression*
+    ;
+
+function_call_function
+    : FUNCALL (HASH? QUOTE ID | hashcomparison| OPEN lambda_function CLOSE) expression*
+    ;
+
+apply_call_function
+    : APPLY (HASH? QUOTE ID | hashcomparison| OPEN lambda_function CLOSE) listForm
+    ;
+
+mapcar_function
+    : MAPCAR (HASH? QUOTE ID | hashcomparison| OPEN lambda_function CLOSE) listForm
+    ;
+
+progn_expression
+    : PROGN OPEN parameter_list CLOSE expression*
+    ;
+
+let_expression
+    : LET OPEN let_binding* CLOSE expression+
+    ;
+
+let_binding
+    : OPEN ID expression? CLOSE
+    ;
+
+lambda_function
+    : LAMBDA OPEN parameter_list CLOSE expression+
     ;
