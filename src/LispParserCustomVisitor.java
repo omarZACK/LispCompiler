@@ -126,7 +126,7 @@ public class LispParserCustomVisitor extends LispParserBaseVisitor<Void> {
         return visitChildren(ctx);
     }
 
-    private String getHumanReadableTree(ParseTree tree) {
+    public String getHumanReadableTree(ParseTree tree) {
         StringBuilder sb = new StringBuilder();
         traverseTree(tree, sb);
         return sb.toString().trim();

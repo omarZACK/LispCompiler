@@ -149,6 +149,7 @@ numeric_expression
     | ID
     | NUMBERDEF
     | PI
+    | function_call_expression
     ;
 
 loop_expression
@@ -245,7 +246,7 @@ pre_define_function_expression
     | pop_expression
     | push_expression
     | progn_expression
-    |let_expression
+    | let_expression
     ;
 
 print_function_expression
@@ -430,7 +431,7 @@ function_call
     ;
 
 function_call_function
-    : FUNCALL (HASH? QUOTE ID | hashcomparison| OPEN lambda_function CLOSE) expression*
+    : FUNCALL ((HASH? QUOTE)? ID | hashcomparison | OPEN lambda_function CLOSE) expression*
     ;
 
 apply_call_function

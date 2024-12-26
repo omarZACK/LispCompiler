@@ -3,23 +3,20 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
 public class TestCompiler {
-    public static void main(String[] args) {
-        String input = "(case c ((nil) (+ 1 1)) (otherwise \"default\"))";
+    public static void main(String[] args) throws Exception {
+        String lispCode = "src/input.txt";
 
-        try {
-            CharStream charStream = CharStreams.fromString(input);
+        CharStream inputStream = CharStreams.fromFileName(lispCode);
+        LispLexer lexer = new LispLexer(inputStream);
 
-            LispLexer lexer = new LispLexer(charStream);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
+        // Tokenize the input using the lexer
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
 
-            LispParser parser = new LispParser(tokens);
-            ParseTree tree = parser.lisp();
+        LispParser parser = new LispParser(tokens);
 
-            LispParserCustomVisitor visitor = new LispParserCustomVisitor();
-            visitor.visit(tree);
+        ParseTree tree = parser.lisp();
 
-        } catch (Exception e) {
-            System.err.println(STR."An error occurred: \{e.getMessage()}");
-        }
+        LispParserBaseVisitor<?> visitor = new LispParserBaseVisitor<>();
+        visitor.visit(tree);
     }
 }
