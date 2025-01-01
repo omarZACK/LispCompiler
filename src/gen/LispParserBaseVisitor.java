@@ -18,161 +18,469 @@ public class LispParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLisp(LispParser.LispContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISP_EXPRESSION(LispParser.LISP_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitExpression(LispParser.ExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVARIABLE(LispParser.VARIABLEContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitList(LispParser.ListContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNUMBER(LispParser.NUMBERContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitHashed_expression(LispParser.Hashed_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSTRING(LispParser.STRINGContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitHashvector_expression(LispParser.Hashvector_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTRUE(LispParser.TRUEContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLiterals_expression(LispParser.Literals_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFALSE(LispParser.FALSEContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitList_content(LispParser.List_contentContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLIST(LispParser.LISTContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitNumber_expression(LispParser.Number_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNON_EMPTYLIST(LispParser.NON_EMPTYLISTContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitComplex_number_definetion(LispParser.Complex_number_definetionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitEMPTYLIST(LispParser.EMPTYLISTContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitArithmetic_expression(LispParser.Arithmetic_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLITERALEXPRESSION(LispParser.LITERALEXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitComparison_expression(LispParser.Comparison_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISP_HASHED(LispParser.LISP_HASHEDContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitConditional_expression(LispParser.Conditional_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISP_HASHVECTOR(LispParser.LISP_HASHVECTORContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIf_expression(LispParser.If_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCOMPLEXNUMBERDEFINITION(LispParser.COMPLEXNUMBERDEFINITIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitWhen_expression(LispParser.When_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitHASHVECTOR(LispParser.HASHVECTORContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitUnless_expression(LispParser.Unless_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitQUOTED_EXPRESSION(LispParser.QUOTED_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCond_expression(LispParser.Cond_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISTFORM(LispParser.LISTFORMContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCond_clause(LispParser.Cond_clauseContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISP_ARITHMETIC(LispParser.LISP_ARITHMETICContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCase_expression(LispParser.Case_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISP_COMPARISON(LispParser.LISP_COMPARISONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCase_clause(LispParser.Case_clauseContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISP_CONDITIONAL(LispParser.LISP_CONDITIONALContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitValue_list(LispParser.Value_listContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISP_LOGICAL(LispParser.LISP_LOGICALContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitNested_list(LispParser.Nested_listContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISP_LOOPS(LispParser.LISP_LOOPSContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDefault_clause(LispParser.Default_clauseContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISP_RETURN(LispParser.LISP_RETURNContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLogical_expression(LispParser.Logical_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISP_RETURNFROM(LispParser.LISP_RETURNFROMContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_BLOCK(LispParser.LISP_BLOCKContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_ERRORHANDLING(LispParser.LISP_ERRORHANDLINGContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_PREDEFINEDFUNCTION(LispParser.LISP_PREDEFINEDFUNCTIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_FUNCTIONCALL(LispParser.LISP_FUNCTIONCALLContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitNUMBER_EXPRESSION(LispParser.NUMBER_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitHASHCOMPLEX_NUMBER_DEFINITION(LispParser.HASHCOMPLEX_NUMBER_DEFINITIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitSUBTRACTION(LispParser.SUBTRACTIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitDIVIDION(LispParser.DIVIDIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitMULTIPLICATION(LispParser.MULTIPLICATIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitADDITION(LispParser.ADDITIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitINCREMENT(LispParser.INCREMENTContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitDECREMENT(LispParser.DECREMENTContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitEXPONENTIAL(LispParser.EXPONENTIALContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitABSOLUTE(LispParser.ABSOLUTEContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCONJUGATE(LispParser.CONJUGATEContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitEXPONENTIATION(LispParser.EXPONENTIATIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLOGARITHM(LispParser.LOGARITHMContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitSQUARE_ROOT(LispParser.SQUARE_ROOTContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitINTEGER_SQUARE_ROOT(LispParser.INTEGER_SQUARE_ROOTContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitNUMERIC_EQUALITY(LispParser.NUMERIC_EQUALITYContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitNUMERIC_COMPARISON(LispParser.NUMERIC_COMPARISONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitGENERAL_EQUALITY(LispParser.GENERAL_EQUALITYContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitIF_CONDITION(LispParser.IF_CONDITIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitWHEN_CONDITION(LispParser.WHEN_CONDITIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCOND_CONDITION(LispParser.COND_CONDITIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCASE_CONDITION(LispParser.CASE_CONDITIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitUNLESS_CONDITION(LispParser.UNLESS_CONDITIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitIF_EXPRESSION(LispParser.IF_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitWHEN_EXPRESSION(LispParser.WHEN_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitUNLESS_EXPRESSION(LispParser.UNLESS_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCOND_EXPRESSION(LispParser.COND_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCOND_CLAUSE(LispParser.COND_CLAUSEContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCASE_EXPRESSION(LispParser.CASE_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCASE_CLAUSE(LispParser.CASE_CLAUSEContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitVALUE_LIST(LispParser.VALUE_LISTContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitNESTED_LIST(LispParser.NESTED_LISTContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitDEFAULT_CLAUSE(LispParser.DEFAULT_CLAUSEContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLOGICAL_OPERATORS(LispParser.LOGICAL_OPERATORSContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitNOT_EXPRESSION(LispParser.NOT_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLOGICAL_OPERATIONS(LispParser.LOGICAL_OPERATIONSContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitEVEN_ODD(LispParser.EVEN_ODDContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitZERO_CHECK(LispParser.ZERO_CHECKContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitBOUND_CHECK(LispParser.BOUND_CHECKContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTYPE_CHECK(LispParser.TYPE_CHECKContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -186,196 +494,525 @@ public class LispParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTypes_expression(LispParser.Types_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTYPE_EXPRESSION(LispParser.TYPE_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitNumeric_expression(LispParser.Numeric_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLOGICAL_TYPE_EXPRESSION(LispParser.LOGICAL_TYPE_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLoop_expression(LispParser.Loop_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNUMERIC_ARITHMETIC(LispParser.NUMERIC_ARITHMETICContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDolist_expr(LispParser.Dolist_exprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNUMERIC_IDENTIFIER(LispParser.NUMERIC_IDENTIFIERContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDotimes_expr(LispParser.Dotimes_exprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNUMERIC_LITERAL(LispParser.NUMERIC_LITERALContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLoop_expr(LispParser.Loop_exprContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPI(LispParser.PIContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLoop_clause(LispParser.Loop_clauseContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNUMERIC_FUNCTION_CALL(LispParser.NUMERIC_FUNCTION_CALLContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitListForm(LispParser.ListFormContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDOLIST_EXPRESSION(LispParser.DOLIST_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitListForm_content(LispParser.ListForm_contentContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDOTIMES_EXPRESSION(LispParser.DOTIMES_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitReturn_expression(LispParser.Return_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLOOP_EXPRESSION(LispParser.LOOP_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitBlock_expression(LispParser.Block_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDOLIST_LOOP(LispParser.DOLIST_LOOPContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitReturn_from_expression(LispParser.Return_from_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDOTIMES_LOOP(LispParser.DOTIMES_LOOPContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitError_handling_expression(LispParser.Error_handling_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLOOP_STATEMENT(LispParser.LOOP_STATEMENTContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitError_expression(LispParser.Error_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLOOP_WITH_CLAUSES(LispParser.LOOP_WITH_CLAUSESContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPre_define_function_expression(LispParser.Pre_define_function_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFOR_LOOP_IN(LispParser.FOR_LOOP_INContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPrint_function_expression(LispParser.Print_function_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFOR_LOOP_RANGE(LispParser.FOR_LOOP_RANGEContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitWrite_function_expression(LispParser.Write_function_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLIST_FORM_ID(LispParser.LIST_FORM_IDContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitComplex_expression(LispParser.Complex_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLIST_FORM_EXPRESSION(LispParser.LIST_FORM_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFloat_expression(LispParser.Float_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLIST_FORM_CONTENT(LispParser.LIST_FORM_CONTENTContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitTrigonometric_expression(LispParser.Trigonometric_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRETURN_EXPRESSION(LispParser.RETURN_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitHyperbolic_expression(LispParser.Hyperbolic_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitBLOCK_EXPRESSION(LispParser.BLOCK_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitGcd_expression(LispParser.Gcd_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRETURN_FROM_EXPRESSION(LispParser.RETURN_FROM_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLcm_expression(LispParser.Lcm_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitERROR_EXPRESSION(LispParser.ERROR_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFloor_expression(LispParser.Floor_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitERROR_HANDLING(LispParser.ERROR_HANDLINGContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCeil_expression(LispParser.Ceil_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISP_PRINT_FUNCTION(LispParser.LISP_PRINT_FUNCTIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitModulo_expression(LispParser.Modulo_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISP_WRITE_FUNCTION(LispParser.LISP_WRITE_FUNCTIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFormat_expression(LispParser.Format_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISP_COMPLEX(LispParser.LISP_COMPLEXContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFormat_string(LispParser.Format_stringContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLISP_FLOAT(LispParser.LISP_FLOATContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_TRIGONOMETRIC(LispParser.LISP_TRIGONOMETRICContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_HYPERBOLIC(LispParser.LISP_HYPERBOLICContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_LCM(LispParser.LISP_LCMContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_GCD(LispParser.LISP_GCDContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_CEIL(LispParser.LISP_CEILContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_FLOOR(LispParser.LISP_FLOORContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_MODULO(LispParser.LISP_MODULOContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_FORMAT(LispParser.LISP_FORMATContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_VARIABLE_DEFINITION(LispParser.LISP_VARIABLE_DEFINITIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_CONSTANT_DEFINITION(LispParser.LISP_CONSTANT_DEFINITIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_PARAMETER_DEFINITION(LispParser.LISP_PARAMETER_DEFINITIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_LIST_STRUCTURE(LispParser.LISP_LIST_STRUCTUREContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_VECTOR(LispParser.LISP_VECTORContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_ARRAY(LispParser.LISP_ARRAYContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_CONS(LispParser.LISP_CONSContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_SETQ(LispParser.LISP_SETQContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_FUNCTION_DEFINITION(LispParser.LISP_FUNCTION_DEFINITIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_MACRO_DEFINITION(LispParser.LISP_MACRO_DEFINITIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_STRUCTURE_DEFINITION(LispParser.LISP_STRUCTURE_DEFINITIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_REVERSE(LispParser.LISP_REVERSEContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_APPEND(LispParser.LISP_APPENDContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_INTERSECTION(LispParser.LISP_INTERSECTIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_SUBSET(LispParser.LISP_SUBSETContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_MEMBER(LispParser.LISP_MEMBERContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_UNION(LispParser.LISP_UNIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_DIFFERENCE(LispParser.LISP_DIFFERENCEContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_CHARACTER_FUNCTION(LispParser.LISP_CHARACTER_FUNCTIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_SORT(LispParser.LISP_SORTContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_ARRAY_REF(LispParser.LISP_ARRAY_REFContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_POP(LispParser.LISP_POPContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_PUSH(LispParser.LISP_PUSHContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_PROGN(LispParser.LISP_PROGNContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLISP_LET(LispParser.LISP_LETContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitPRINT_FUNCTION_EXPRESSION(LispParser.PRINT_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitWRITE_FUNCTION_EXPRESSION(LispParser.WRITE_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCOMPLEX_EXPRESSION(LispParser.COMPLEX_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitFLOAT_EXPRESSION(LispParser.FLOAT_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitTRIGONOMETRIC_FUNCTION_EXPRESSION(LispParser.TRIGONOMETRIC_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitARCTANGENT_FUNCTION_EXPRESSION(LispParser.ARCTANGENT_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitHYPERBOLIC_FUNCTION_EXPRESSION(LispParser.HYPERBOLIC_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitGCD_FUNCTION_EXPRESSION(LispParser.GCD_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLCM_FUNCTION_EXPRESSION(LispParser.LCM_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitFLOOR_FUNCTION_EXPRESSION(LispParser.FLOOR_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCEIL_FUNCTION_EXPRESSION(LispParser.CEIL_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitMODULO_FUNCTION_EXPRESSION(LispParser.MODULO_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitFORMAT_STRING_EXPRESSION(LispParser.FORMAT_STRING_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitFORMAT_STRING(LispParser.FORMAT_STRINGContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -389,250 +1026,313 @@ public class LispParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVariable_definition_expression(LispParser.Variable_definition_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVARIABLE_DEFINITION_EXPRESSION(LispParser.VARIABLE_DEFINITION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitConstant_definition_expression(LispParser.Constant_definition_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCONSTANT_DEFINITION_EXPRESSION(LispParser.CONSTANT_DEFINITION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitParameter_definition_expression(LispParser.Parameter_definition_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPARAMETER_DEFINITION_EXPRESSION(LispParser.PARAMETER_DEFINITION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitList_structure_expression(LispParser.List_structure_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLIST_STRUCTURE_EXPRESSION(LispParser.LIST_STRUCTURE_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVector_expression(LispParser.Vector_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVECTOR_STRUCTURE_EXPRESSION(LispParser.VECTOR_STRUCTURE_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitArray_expression(LispParser.Array_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitARRAY_EXPRESSION(LispParser.ARRAY_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitArray_key_argument(LispParser.Array_key_argumentContext ctx) { return visitChildren(ctx); }
+	@Override public T visitARRAY_ELEMENT_TYPE_EXPRESSION(LispParser.ARRAY_ELEMENT_TYPE_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCons_expression(LispParser.Cons_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitARRAY_INITIAL_ELEMENT_EXPRESSION(LispParser.ARRAY_INITIAL_ELEMENT_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSetq_expression(LispParser.Setq_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitARRAY_INITIAL_CONTENT_EXPRESSION(LispParser.ARRAY_INITIAL_CONTENT_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunction_definition(LispParser.Function_definitionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitADJUSTABLE_ARRAY_EXPRESSION(LispParser.ADJUSTABLE_ARRAY_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMacro_definition_expression(LispParser.Macro_definition_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFILL_POINTER_EXPRESSION(LispParser.FILL_POINTER_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStructure_definition_expression(LispParser.Structure_definition_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCONS_EXPRESSION_EXPRESSION(LispParser.CONS_EXPRESSION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitStructure_content(LispParser.Structure_contentContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSETQ_EXPRESSION_EXPRESSION(LispParser.SETQ_EXPRESSION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitParameter_list(LispParser.Parameter_listContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFUNCTION_DEFINITION_EXPRESSION(LispParser.FUNCTION_DEFINITION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDifference_expression(LispParser.Difference_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMACRO_DEFINITION_EXPRESSION(LispParser.MACRO_DEFINITION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitUnion_expression(LispParser.Union_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSTRUCTURE_DEFINITION_EXPRESSION(LispParser.STRUCTURE_DEFINITION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMember_expression(LispParser.Member_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSTRUCTURE_CONTENT_EXPRESSION(LispParser.STRUCTURE_CONTENT_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSubset_expression(LispParser.Subset_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPARAMETER_LIST_EXPRESSION(LispParser.PARAMETER_LIST_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIntersection_expression(LispParser.Intersection_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDIFFERENCE_EXPRESSION_EXPRESSION(LispParser.DIFFERENCE_EXPRESSION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitAppend_expression(LispParser.Append_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitUNION_EXPRESSION_EXPRESSION(LispParser.UNION_EXPRESSION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitReverse_expression(LispParser.Reverse_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMEMBER_EXPRESSION_EXPRESSION(LispParser.MEMBER_EXPRESSION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCharacter_function_expression(LispParser.Character_function_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSUBSET_EXPRESSION_EXPRESSION(LispParser.SUBSET_EXPRESSION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitSort_expression(LispParser.Sort_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitINTERSECTION_EXPRESSION_EXPRESSION(LispParser.INTERSECTION_EXPRESSION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitHashcomparison(LispParser.HashcomparisonContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAPPEND_EXPRESSION(LispParser.APPEND_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitArrayref_expression(LispParser.Arrayref_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitREVERSE_EXPRESSION(LispParser.REVERSE_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPush_expression(LispParser.Push_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCHARACTER_FUNCTION_EXPRESSION(LispParser.CHARACTER_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitPop_expression(LispParser.Pop_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSORT_EXPRESSION(LispParser.SORT_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunction_call_expression(LispParser.Function_call_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitHASH_COMPARISON(LispParser.HASH_COMPARISONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunction_call(LispParser.Function_callContext ctx) { return visitChildren(ctx); }
+	@Override public T visitARRAY_REF_EXPRESSION(LispParser.ARRAY_REF_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunction_call_function(LispParser.Function_call_functionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPUSH_EXPRESSION(LispParser.PUSH_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitApply_call_function(LispParser.Apply_call_functionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitPOP_EXPRESSION(LispParser.POP_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitMapcar_function(LispParser.Mapcar_functionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFUNCTION_CALL(LispParser.FUNCTION_CALLContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitProgn_expression(LispParser.Progn_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFUNCTION_CALL_FUNCTION(LispParser.FUNCTION_CALL_FUNCTIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLet_expression(LispParser.Let_expressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAPPLY_CALL_FUNCTION(LispParser.APPLY_CALL_FUNCTIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLet_binding(LispParser.Let_bindingContext ctx) { return visitChildren(ctx); }
+	@Override public T visitMAPCAR_FUNCTION(LispParser.MAPCAR_FUNCTIONContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLambda_function(LispParser.Lambda_functionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLAMBDA_FUNCTION(LispParser.LAMBDA_FUNCTIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitFUNCTION_CALL_EXPRESSION(LispParser.FUNCTION_CALL_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitFUNCTION_CALL_FUNCTION_EXPRESSION(LispParser.FUNCTION_CALL_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitAPPLY_CALL_FUNCTION_EXPRESSION(LispParser.APPLY_CALL_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitMAPCAR_FUNCTION_EXPRESSION(LispParser.MAPCAR_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitPROGN_EXPRESSION(LispParser.PROGN_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLET_EXPRESSION(LispParser.LET_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLET_BINDING_EXPRESSION(LispParser.LET_BINDING_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitLAMBDA_FUNCTION_EXPRESSION(LispParser.LAMBDA_FUNCTION_EXPRESSIONContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitSTRING_EXPRESSION(LispParser.STRING_EXPRESSIONContext ctx) { return visitChildren(ctx); }
 }
