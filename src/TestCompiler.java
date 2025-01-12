@@ -1,22 +1,225 @@
-import gen.*;
-import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class TestCompiler {
-    public static void main(String[] args) throws Exception {
-        String lispCode = "src/input.txt";
+    public static void main(String[] args) {
+        // Create the 'ast' directory
+        File astDirectory = new File("src/ast");
+        if (!astDirectory.exists()) {
+            astDirectory.mkdir(); // Create the directory if it doesn't exist
+        }
 
-        CharStream inputStream = CharStreams.fromFileName(lispCode);
-        LispLexer lexer = new LispLexer(inputStream);
+        // Predefined labels for Lisp constructs
+        List<String> labels = Arrays.asList(
+                "LISP_EXPRESSION",
+                "VARIABLE",
+                "NUMBER",
+                "STRING",
+                "TRUE",
+                "FALSE",
+                "LIST",
+                "NON_EMPTYLIST",
+                "EMPTYLIST",
+                "LITERALEXPRESSION",
+                "LISP_HASHED",
+                "LISP_HASHVECTOR",
+                "COMPLEXNUMBERDEFINITION",
+                "HASHVECTOR",
+                "QUOTED_EXPRESSION",
+                "LISTFORM",
+                "LISP_ARITHMETIC",
+                "LISP_COMPARISON",
+                "LISP_CONDITIONAL",
+                "LISP_LOGICAL",
+                "LISP_LOOPS",
+                "LISP_RETURN",
+                "LISP_RETURNFROM",
+                "LISP_BLOCK",
+                "LISP_ERRORHANDLING",
+                "LISP_PREDEFINEDFUNCTION",
+                "LISP_FUNCTIONCALL",
+                "NUMBER_EXPRESSION",
+                "HASHCOMPLEX_NUMBER_DEFINITION",
+                "SUBTRACTION",
+                "DIVIDION",
+                "MULTIPLICATION",
+                "ADDITION",
+                "INCREMENT",
+                "DECREMENT",
+                "EXPONENTIAL",
+                "ABSOLUTE",
+                "CONJUGATE",
+                "EXPONENTIATION",
+                "LOGARITHM",
+                "SQUARE_ROOT",
+                "INTEGER_SQUARE_ROOT",
+                "NUMERIC_EQUALITY",
+                "NUMERIC_COMPARISON",
+                "GENERAL_EQUALITY",
+                "IF_CONDITION",
+                "WHEN_CONDITION",
+                "COND_CONDITION",
+                "CASE_CONDITION",
+                "UNLESS_CONDITION",
+                "IF_EXPRESSION",
+                "WHEN_EXPRESSION",
+                "UNLESS_EXPRESSION",
+                "COND_EXPRESSION",
+                "COND_CLAUSE",
+                "CASE_EXPRESSION",
+                "CASE_CLAUSE",
+                "VALUE_LIST",
+                "NESTED_LIST",
+                "DEFAULT_CLAUSE",
+                "LOGICAL_OPERATORS",
+                "NOT_EXPRESSION",
+                "LOGICAL_OPERATIONS",
+                "EVEN_ODD",
+                "ZERO_CHECK",
+                "BOUND_CHECK",
+                "TYPE_CHECK",
+                "TYPE_EXPRESSION",
+                "LOGICAL_TYPE_EXPRESSION",
+                "NUMERIC_ARITHMETIC",
+                "NUMERIC_IDENTIFIER",
+                "NUMERIC_LITERAL",
+                "PI",
+                "NUMERIC_FUNCTION_CALL",
+                "DOLIST_EXPRESSION",
+                "DOTIMES_EXPRESSION",
+                "LOOP_EXPRESSION",
+                "DOLIST_LOOP",
+                "DOTIMES_LOOP",
+                "LOOP_STATEMENT",
+                "LOOP_WITH_CLAUSES",
+                "FOR_LOOP_IN",
+                "FOR_LOOP_RANGE",
+                "LIST_FORM_ID",
+                "LIST_FORM_EXPRESSION",
+                "LIST_FORM_CONTENT",
+                "RETURN_EXPRESSION",
+                "BLOCK_EXPRESSION",
+                "RETURN_FROM_EXPRESSION",
+                "ERROR_EXPRESSION",
+                "ERROR_HANDLING",
+                "LISP_PRINT_FUNCTION",
+                "LISP_WRITE_FUNCTION",
+                "LISP_COMPLEX",
+                "LISP_FLOAT",
+                "LISP_TRIGONOMETRIC",
+                "LISP_HYPERBOLIC",
+                "LISP_LCM",
+                "LISP_GCD",
+                "LISP_CEIL",
+                "LISP_FLOOR",
+                "LISP_MODULO",
+                "LISP_FORMAT",
+                "LISP_VARIABLE_DEFINITION",
+                "LISP_CONSTANT_DEFINITION",
+                "LISP_PARAMETER_DEFINITION",
+                "LISP_LIST_STRUCTURE",
+                "LISP_VECTOR",
+                "LISP_ARRAY",
+                "LISP_CONS",
+                "LISP_SETQ",
+                "LISP_FUNCTION_DEFINITION",
+                "LISP_MACRO_DEFINITION",
+                "LISP_STRUCTURE_DEFINITION",
+                "LISP_REVERSE",
+                "LISP_APPEND",
+                "LISP_INTERSECTION",
+                "LISP_SUBSET",
+                "LISP_MEMBER",
+                "LISP_UNION",
+                "LISP_DIFFERENCE",
+                "LISP_CHARACTER_FUNCTION",
+                "LISP_SORT",
+                "LISP_ARRAY_REF",
+                "LISP_POP",
+                "LISP_PUSH",
+                "LISP_PROGN",
+                "LISP_LET",
+                "PRINT_FUNCTION_EXPRESSION",
+                "WRITE_FUNCTION_EXPRESSION",
+                "COMPLEX_EXPRESSION",
+                "FLOAT_EXPRESSION",
+                "TRIGONOMETRIC_FUNCTION_EXPRESSION",
+                "ARCTANGENT_FUNCTION_EXPRESSION",
+                "HYPERBOLIC_FUNCTION_EXPRESSION",
+                "GCD_FUNCTION_EXPRESSION",
+                "LCM_FUNCTION_EXPRESSION",
+                "FLOOR_FUNCTION_EXPRESSION",
+                "CEIL_FUNCTION_EXPRESSION",
+                "MODULO_FUNCTION_EXPRESSION",
+                "FORMAT_STRING_EXPRESSION",
+                "FORMAT_STRING",
+                "STRING_FORMAT_ARGUMENT",
+                "VARIABLE_DEFINITION_EXPRESSION",
+                "CONSTANT_DEFINITION_EXPRESSION",
+                "PARAMETER_DEFINITION_EXPRESSION",
+                "LIST_STRUCTURE_EXPRESSION",
+                "VECTOR_STRUCTURE_EXPRESSION",
+                "ARRAY_EXPRESSION",
+                "ARRAY_ELEMENT_TYPE_EXPRESSION",
+                "ARRAY_INITIAL_ELEMENT_EXPRESSION",
+                "ARRAY_INITIAL_CONTENT_EXPRESSION",
+                "ADJUSTABLE_ARRAY_EXPRESSION",
+                "FILL_POINTER_EXPRESSION",
+                "CONS_EXPRESSION_EXPRESSION",
+                "SETQ_EXPRESSION_EXPRESSION",
+                "FUNCTION_DEFINITION_EXPRESSION",
+                "MACRO_DEFINITION_EXPRESSION",
+                "STRUCTURE_DEFINITION_EXPRESSION",
+                "STRUCTURE_CONTENT_EXPRESSION",
+                "PARAMETER_LIST_EXPRESSION",
+                "DIFFERENCE_EXPRESSION_EXPRESSION",
+                "UNION_EXPRESSION_EXPRESSION",
+                "MEMBER_EXPRESSION_EXPRESSION",
+                "SUBSET_EXPRESSION_EXPRESSION",
+                "INTERSECTION_EXPRESSION_EXPRESSION",
+                "APPEND_EXPRESSION",
+                "REVERSE_EXPRESSION",
+                "CHARACTER_FUNCTION_EXPRESSION",
+                "SORT_EXPRESSION",
+                "CONS",
+                "ARRAY_REF_EXPRESSION",
+                "PUSH_EXPRESSION",
+                "POP_EXPRESSION",
+                "FUNCTION_CALL",
+                "FUNCTION_CALL_FUNCTION",
+                "APPLY_CALL_FUNCTION",
+                "MAPCAR_FUNCTION",
+                "LAMBDA_FUNCTION",
+                "FUNCTION_CALL_EXPRESSION",
+                "FUNCTION_CALL_FUNCTION_EXPRESSION",
+                "APPLY_CALL_FUNCTION_EXPRESSION",
+                "MAPCAR_FUNCTION_EXPRESSION",
+                "PROGN_EXPRESSION",
+                "LET_EXPRESSION",
+                "LET_BINDING_EXPRESSION",
+                "LAMBDA_FUNCTION_EXPRESSION",
+                "STRING_EXPRESSION"
+        );
 
-        // Tokenize the input using the lexer
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        // Generate Java files for each label in the 'ast' directory
+        for (String label : labels) {
+            generateJavaFile(astDirectory, label);
+        }
+    }
 
-        LispParser parser = new LispParser(tokens);
-
-        ParseTree tree = parser.lisp();
-
-        LispParserBaseVisitor<?> visitor = new LispParserBaseVisitor<>();
-        visitor.visit(tree);
+    private static void generateJavaFile(File directory, String label) {
+        String fileName = directory.getPath() + File.separator + label + ".java";
+        try (FileWriter writer = new FileWriter(new File(fileName))) {
+            writer.write("package ast;\n");
+            writer.write("public class " + label + " extends ASTNode "+ " {\n");
+            writer.write("    // Class implementation for " + label + "\n");
+            writer.write("}\n");
+            System.out.println("Generated: " + fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

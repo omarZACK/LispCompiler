@@ -140,7 +140,9 @@ logical_expression
     | (TYPE) expression QUOTE types_expression                                                  # TYPE_CHECK
     ;
 
-types: (FIXNUM|BIGNUM|RATION|FLOAT|COMPLEX|LIST|REAL|INTEGER|NUMBER|VECTOR|STRING|BOOLEAN|TRUE|FALSE);
+types
+    : (FIXNUM|BIGNUM|RATION|FLOAT|COMPLEX|LIST|REAL|INTEGER
+    |NUMBER|VECTOR|STRING|BOOLEAN|TRUE|FALSE);
 
 types_expression
     : types                                                                                     # TYPE_EXPRESSION
@@ -403,7 +405,8 @@ sort_expression
     ;
 
 hashcomparison
-    : HASH QUOTE (LT |GT |LTE| GTE|NUMEQUAL | PLUS |MINUS |MULTIPLY |DIVIDE | MIN | MAX | APPEND |CONS |ABS|STRINGLESSP | CHARLESSP ) # HASH_COMPARISON
+    : HASH QUOTE (LT |GT |LTE| GTE|NUMEQUAL | PLUS |MINUS |MULTIPLY
+    |DIVIDE | MIN | MAX | APPEND |CONS |ABS|STRINGLESSP | CHARLESSP )                           # HASH_COMPARISON
     ;
 
 arrayref_expression
